@@ -377,7 +377,7 @@ def text_handler(message):
             
             i += 1
         
-        for text_cut in (test_text[::4096]):
+        for text_cut in (test_text[0:-1:4096]):
         
             bot.send_message(
                 chat_id=message.chat.id, 
