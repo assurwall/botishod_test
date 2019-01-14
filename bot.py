@@ -306,7 +306,7 @@ def inline_handler(inline_query):
                 
             for chat_id in used_chat_id:
                     
-                if (user_chat_id == chat_id):
+                if (int(user_chat_id) == int(chat_id)):
                 
                     flag = True
                     
