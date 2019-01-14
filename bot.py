@@ -304,9 +304,9 @@ def inline_handler(inline_query):
             
             flag = False    
                 
-            for chat_id in user_chat_id:
+            for chat_id in used_chat_id:
                     
-                if (chat_id == user_chat_id):
+                if (user_chat_id == chat_id):
                 
                     flag = True
                     
