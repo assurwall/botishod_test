@@ -302,9 +302,9 @@ def inline_handler(inline_query):
                     
                 continue
                 
-            if (str(user_chat_id)==str(inline_query.message.chat.id)):
+#            if (str(user_chat_id)==str(inline_query.message.chat.id)):
                 
-                continue
+#                continue
 
             print('Отправка сообщения на id='+str(user_chat_id)+'\n')
                 
