@@ -299,17 +299,16 @@ def inline_handler(inline_query):
         for user_chat_id in data.users_name.keys():
             
 #            if user_chat_id in used_chat_id:
-                    
-             for chat_id in used_chat_id:
-                        
-                print('На этот id, id='+chat_id+' уже было отправленно сообщение. \n')
-                
-                continue
-                
+
 #            if (str(user_chat_id)==str(inline_query.message.chat.id)):
-                
+
 #                continue
 
+            for chat_id in used_chat_id:
+                
+                print('На этот id, id='+chat_id+' уже было отправленно сообщение. \n')
+                
+                
             print('Отправка сообщения на id='+str(user_chat_id)+'\n')
                 
             try:
