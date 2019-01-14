@@ -301,12 +301,16 @@ def inline_handler(inline_query):
 #            if (str(user_chat_id)==str(inline_query.message.chat.id)):
 
 #                continue
-
-            for chat_id in used_chat_id:
+            
+            flag = False    
                 
-                print('На этот id, id='+str(chat_id)+' уже было отправленно сообщение. \n')
+            for chat_id in user_chat_id:
+                    
+                if user_chat_id in used_chat_id:
                 
-            if user_chat_id in used_chat_id:
+                    flag = True
+                    
+            if(flag):
                 
                 continue
                 
