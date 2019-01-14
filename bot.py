@@ -297,8 +297,6 @@ def inline_handler(inline_query):
         used_chat_id = []
         
         for user_chat_id in data.users_name.keys():
-            
-#            if user_chat_id in used_chat_id:
 
 #            if (str(user_chat_id)==str(inline_query.message.chat.id)):
 
@@ -308,6 +306,9 @@ def inline_handler(inline_query):
                 
                 print('На этот id, id='+str(chat_id)+' уже было отправленно сообщение. \n')
                 
+            if user_chat_id in used_chat_id:
+                
+                continue
                 
             print('Отправка сообщения на id='+str(user_chat_id)+'\n')
                 
