@@ -312,12 +312,12 @@ def inline_handler(inline_query):
                 
             try:
                 
+                used_chat_id.append(user_chat_id)
+                
                 bot.send_message(
                     chat_id=user_chat_id,
                     text=data.news)
-                
-                used_chat_id.append(user_chat_id)
-                
+            
             except:
                 
                 continue
