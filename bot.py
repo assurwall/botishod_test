@@ -298,9 +298,11 @@ def inline_handler(inline_query):
         
         for user_chat_id in data.users_name.keys():
             
-            if user_chat_id in used_chat_id:
+#            if user_chat_id in used_chat_id:
                     
-                print('На этот id уже было отправленно сообщение. \n')
+             for chat_id in used_chat_id:
+                        
+                print('На этот id, id='+chat_id+' уже было отправленно сообщение. \n')
                 
                 continue
                 
