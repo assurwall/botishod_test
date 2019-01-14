@@ -253,7 +253,7 @@ def today_buttons_statistics():
         
     else:
         
-        result_text = 'Нет нажатий за сегодняшний день \n'
+        result_text = 'Нет нажатий за сегодняшний день. \n'
     
     con.close()
 
