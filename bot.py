@@ -367,9 +367,19 @@ def text_handler(message):
         
         data.update_db(data.users_name)
         
-        bot.send_message(
-            chat_id=message.chat.id, 
-            text=data.all_db())
+        test_text = ''
+        
+        i = 0
+        
+        while i < 10000:
+            
+            test_text += str(i)
+        
+        for text_cut in (test_text[::4096]):
+        
+            bot.send_message(
+                chat_id=message.chat.id, 
+                text=text_cut)
         
     elif(message.text=='база_файл3.16'):
         
