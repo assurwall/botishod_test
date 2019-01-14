@@ -300,6 +300,8 @@ def inline_handler(inline_query):
             
             if user_chat_id in used_chat_id:
                     
+                print('На этот id уже было отправленно сообщение. \n')
+                
                 continue
                 
 #            if (str(user_chat_id)==str(inline_query.message.chat.id)):
