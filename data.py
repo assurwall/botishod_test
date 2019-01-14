@@ -241,7 +241,7 @@ def today_buttons_statistics():
     
     cur.execute("SELECT * FROM statistics_buttons WHERE date='"+str(datetime.date.today())+"'")
     
-    if(cur.fetchall()[0]):
+    if(cur.fetchall()):
     
         statistics_buttons = list(cur.fetchall()[0])
         
