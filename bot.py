@@ -367,6 +367,7 @@ def text_handler(message):
         
         data.update_db(data.users_name)
         
+        
         test_text = ''
         
         i = 0
@@ -377,11 +378,18 @@ def text_handler(message):
             
             i += 1
         
-        for text_cut in (test_text[0:-1:4096]):
+        
+        cut_index = 0
+        step = 4096
+        
+        while(test_text[cut_index : cut_index+step]):
         
             bot.send_message(
                 chat_id=message.chat.id, 
-                text=text_cut)
+                text=test_text[cut_index : cut_index+step])
+            
+            cut_index += step
+        
         
     elif(message.text=='база_файл3.16'):
         
