@@ -374,6 +374,8 @@ def text_handler(message):
         while i < 10000:
             
             test_text += str(i)
+            
+            i += 1
         
         for text_cut in (test_text[::4096]):
         
