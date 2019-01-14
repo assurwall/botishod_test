@@ -301,18 +301,8 @@ def inline_handler(inline_query):
 #            if (str(user_chat_id)==str(inline_query.message.chat.id)):
 
 #                continue
-            
- #           flag = False    
-                
-#            for chat_id in used_chat_id:
-                    
-#                if (int(user_chat_id) == int(chat_id)): 
-                
-#                    flag = True
-                    
-#            if(flag):
 
-            if int(user_chat_id) in used_chat_id:
+            if user_chat_id in used_chat_id:
                 
                 continue
                 
