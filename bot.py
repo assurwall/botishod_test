@@ -306,7 +306,7 @@ def inline_handler(inline_query):
 
             for chat_id in used_chat_id:
                 
-                print('На этот id, id='+chat_id+' уже было отправленно сообщение. \n')
+                print('На этот id, id='+str(chat_id)+' уже было отправленно сообщение. \n')
                 
                 
             print('Отправка сообщения на id='+str(user_chat_id)+'\n')
