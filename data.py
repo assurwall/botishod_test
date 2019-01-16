@@ -4,11 +4,6 @@ import datetime
 
 import connect
 
-
-news = '''
-'''
-
-
 def get_information():
     
     result = ''

@@ -286,7 +286,7 @@ def inline_handler(inline_query):
             reply_markup=post_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
         
-        data.news = ''''''
+        post = None
         
     elif(inline_query.data.split(':')[0]=='per_qr'):
         
@@ -312,9 +312,11 @@ def inline_handler(inline_query):
                 
                 used_chat_id.append(user_chat_id)
                 
-                bot.send_message(
-                    chat_id=user_chat_id,
-                    text=data.news)
+#                bot.send_message(
+#                    chat_id=user_chat_id,
+#                    text=data.post)
+
+                bot.forward_message(user_chat_id, post.chat.id, post.message_id)
             
             except:
                 
@@ -348,7 +350,7 @@ def text_handler(message):
     
     if(data.users_name.get(str(message.chat.id))==['record', str(message.from_user.username)]):
         
-        data.news += message.text
+        post = message
         
     elif(message.text=='пост3.16'):
         
