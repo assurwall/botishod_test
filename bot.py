@@ -296,35 +296,46 @@ def inline_handler(inline_query):
         
         used_chat_id = []
         
-        for user_chat_id in data.users_name.keys():
-
-#            if (str(user_chat_id)==str(inline_query.message.chat.id)):
-
-#                continue
-
-            if int(user_chat_id) in used_chat_id:
+        if(post):
+            
+            for user_chat_id in data.users_name.keys():
+    
+#               if (str(user_chat_id)==str(inline_query.message.chat.id)):
+    
+#                    continue
+    
+                if int(user_chat_id) in used_chat_id:
+                    
+                    continue
+                    
+                print('Отправка сообщения на id='+str(user_chat_id)+'\n')
+    
+                    
+                bot.forward_message(user_chat_id, post.chat.id, post.message_id)
+                                    
+                used_chat_id.append(user_chat_id)
                 
-                continue
-                
-            print('Отправка сообщения на id='+str(user_chat_id)+'\n')
+                    
+            bot.edit_message_text(
+                chat_id=inline_query.message.chat.id,
+                message_id=inline_query.message.message_id,
+                text='Ваша новость отправлена.',
+                reply_markup=post_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
+                parse_mode='Markdown')
+            
 
-#                bot.send_message(
-#                    chat_id=user_chat_id,
-#                    text=data.post)
-
-            bot.forward_message(user_chat_id, post.chat.id, post.message_id)
-                
-            used_chat_id.append(user_chat_id)
+        else:
+            
+                bot.edit_message_text(
+                    chat_id=inline_query.message.chat.id,
+                    message_id=inline_query.message.message_id,
+                    text='Вами не было прислано никакой новости.',
+                    reply_markup=post_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
+                    parse_mode='Markdown')
+            
     
     
-        bot.edit_message_text(
-            chat_id=inline_query.message.chat.id,
-            message_id=inline_query.message.message_id,
-            text='Ваша новость отправлена.',
-            reply_markup=post_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
-            parse_mode='Markdown')
-        
-        data.news = ''''''
+        post = None
         
     for i in range(0,16):
         

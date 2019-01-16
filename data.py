@@ -4,6 +4,7 @@ import datetime
 
 import connect
 
+
 def get_information():
     
     result = ''
