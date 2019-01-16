@@ -310,7 +310,6 @@ def inline_handler(inline_query):
                     
                 print('Отправка сообщения на id='+str(user_chat_id)+'\n')
     
-                    
                 bot.forward_message(user_chat_id, data.post.chat.id, data.post.message_id)
                                     
                 used_chat_id.append(user_chat_id)
@@ -323,20 +322,18 @@ def inline_handler(inline_query):
                 reply_markup=post_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
                 parse_mode='Markdown')
             
+            data.post = None  
 
         else:
             
-                bot.edit_message_text(
-                    chat_id=inline_query.message.chat.id,
-                    message_id=inline_query.message.message_id,
-                    text='Вами не было прислано никакой новости.',
-                    reply_markup=post_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
-                    parse_mode='Markdown')
-            
-    
-    
-        data.post = None
-        
+            bot.edit_message_text(
+                chat_id=inline_query.message.chat.id,
+                message_id=inline_query.message.message_id,
+                text='Вами не было прислано никакой новости.',
+                reply_markup=post_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
+                parse_mode='Markdown')
+                
+              
     for i in range(0,16):
         
         if(inline_query.data.split(':')[0]=='cn_'+str(i)+'_qr'):
