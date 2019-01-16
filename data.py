@@ -4,6 +4,11 @@ import datetime
 
 import connect
 
+import telebot
+
+
+post: map
+
 
 def get_information():
     

@@ -296,7 +296,7 @@ def inline_handler(inline_query):
         
         used_chat_id = []
         
-        if(post):
+        if(data.post):
             
             for user_chat_id in data.users_name.keys():
     
@@ -311,7 +311,7 @@ def inline_handler(inline_query):
                 print('Отправка сообщения на id='+str(user_chat_id)+'\n')
     
                     
-                bot.forward_message(user_chat_id, post.chat.id, post.message_id)
+                bot.forward_message(user_chat_id, data.post.chat.id, data.post.message_id)
                                     
                 used_chat_id.append(user_chat_id)
                 
@@ -335,7 +335,7 @@ def inline_handler(inline_query):
             
     
     
-        post = None
+        data.post = None
         
     for i in range(0,16):
         
@@ -356,7 +356,7 @@ def text_handler(message):
     
     if(data.users_name.get(str(message.chat.id))==['record', str(message.from_user.username)]):
         
-        post = message
+        data.post = message
         
     elif(message.text=='пост3.16'):
         
