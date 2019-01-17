@@ -372,17 +372,74 @@ def inline_handler(inline_query):
                 reply_markup=back_contacts_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
                 parse_mode='Markdown')
       
-            
-@bot.message_handler(content_types="text")
+      
+@bot.message_handler(content_types="photo")
 
-def text_handler(message):
+def photo_handler(message):
 
-    
     if(data.users_name.get(str(message.chat.id))==['record', str(message.from_user.username)]):
         
         data.post = message
         
-        print('Новость была успешно записана')
+    else:
+        
+        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
+        
+        data.update_db(data.users_name)
+
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text='Выберите интересующий пункт из меню.', 
+            reply_markup=main_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
+            
+        
+@bot.message_handler(content_types="video")
+
+def video_handler(message):
+
+    if(data.users_name.get(str(message.chat.id))==['record', str(message.from_user.username)]):
+        
+        data.post = message
+        
+    else:
+        
+        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
+        
+        data.update_db(data.users_name)
+
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text='Выберите интересующий пункт из меню.', 
+            reply_markup=main_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
+        
+    
+@bot.message_handler(content_types="document")
+
+def document_handler(message):
+
+    if(data.users_name.get(str(message.chat.id))==['record', str(message.from_user.username)]):
+        
+        data.post = message
+        
+    else:
+        
+        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
+        
+        data.update_db(data.users_name)
+
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text='Выберите интересующий пункт из меню.', 
+            reply_markup=main_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))   
+        
+
+@bot.message_handler(content_types="text")
+
+def text_handler(message):
+
+    if(data.users_name.get(str(message.chat.id))==['record', str(message.from_user.username)]):
+        
+        data.post = message
         
     elif(message.text=='пост3.16'):
         
@@ -411,8 +468,7 @@ def text_handler(message):
                 text=data.all_db()[cut_index : cut_index+step])
             
             cut_index += step
-        
-        
+         
     elif(message.text=='база_файл3.16'):
         
         data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
