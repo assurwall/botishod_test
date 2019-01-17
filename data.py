@@ -7,7 +7,7 @@ import connect
 import telebot
 
 
-post: map
+post = None
 
 
 def get_information():
