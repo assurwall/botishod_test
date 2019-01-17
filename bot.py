@@ -155,7 +155,30 @@ def back_legal_menu_keyboard(chat_id, first_name, user_name='None'):
     keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='lg_qr:'+chat_id+':'+first_name+':'+user_name))
     
     return keyboard
+
+
+def parse_and_send(post, user_chat_id):
     
+    if(post.document):
+                
+        bot.send_document(
+            chat_id = user_chat_id, 
+            data = post.document, 
+            caption = post.caption)
+                    
+    elif(post.video):
+                    
+        bot.send_video(chat_id = user_chat_id, 
+            data = post.video, 
+            caption = post.caption)
+                    
+    elif(post.photo):
+                    
+        bot.send_photo(chat_id = user_chat_id, 
+            photo = post.photo,
+            caption = post.caption)
+
+
 @bot.callback_query_handler(func=lambda inline_query: True)
 
 def inline_handler(inline_query):
@@ -310,7 +333,7 @@ def inline_handler(inline_query):
                     
                 print('Отправка сообщения на id='+str(user_chat_id)+'\n')
     
-                bot.forward_message(user_chat_id, data.post.chat.id, data.post.message_id)
+                parse_and_send(data.post, user_chat_id)
                                     
                 used_chat_id.append(user_chat_id)
                 
