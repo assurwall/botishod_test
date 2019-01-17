@@ -382,6 +382,10 @@ def text_handler(message):
         
         data.post = message
         
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text='Ваша новость была записана')
+        
     elif(message.text=='пост3.16'):
         
         data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
