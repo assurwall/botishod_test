@@ -382,9 +382,7 @@ def text_handler(message):
         
         data.post = message
         
-        bot.send_message(
-            chat_id=message.chat.id, 
-            text='Ваша новость была записана')
+        print('Новость была успешно записана')
         
     elif(message.text=='пост3.16'):
         
