@@ -15,6 +15,7 @@ import data
 
 bot = telebot.TeleBot(config.token, threaded=False)
 
+post: map
 
 def main_menu_keyboard(chat_id, first_name='None', user_name='None'):
 
@@ -321,7 +322,9 @@ def inline_handler(inline_query):
         
         used_chat_id = []
         
-        if(data.post):
+        global post
+        
+        if(post):
             
             for user_chat_id in data.users_name.keys():
     
@@ -335,7 +338,7 @@ def inline_handler(inline_query):
                     
                 print('Отправка сообщения на id='+str(user_chat_id)+'\n')
     
-                parse_and_send(data.post, user_chat_id)
+                parse_and_send(post, user_chat_id)
                                     
                 used_chat_id.append(user_chat_id)
                 
@@ -347,7 +350,7 @@ def inline_handler(inline_query):
                 reply_markup=post_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
                 parse_mode='Markdown')
             
-            data.post = None  
+            post = None  
 
         else:
             
@@ -378,7 +381,9 @@ def text_handler(message):
     
     if(data.users_name.get(str(message.chat.id))==['record', str(message.from_user.username)]):
         
-        data.post = message
+        global post
+        
+        post = message
         
     elif(message.text=='пост3.16'):
         

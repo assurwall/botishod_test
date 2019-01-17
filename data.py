@@ -7,9 +7,6 @@ import connect
 import telebot
 
 
-post = None
-
-
 def get_information():
     
     result = ''
