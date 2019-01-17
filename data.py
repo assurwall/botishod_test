@@ -105,6 +105,7 @@ def get_links():
 
 links = get_links()
 
+
 def get_hotline():
     
     result = ''
@@ -343,3 +344,4 @@ def get_users_name():
 users_name = get_users_name()
 
 
+post: map
