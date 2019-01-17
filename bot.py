@@ -179,7 +179,7 @@ def parse_and_send(post, user_chat_id):
     elif(post.photo):
                     
         bot.send_photo(chat_id = user_chat_id, 
-            photo = post.photo.file_id,
+            photo = post.photo[0].file_id,
             caption = post.caption)
 
 
