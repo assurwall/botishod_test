@@ -342,4 +342,4 @@ def get_users_name():
 users_name = get_users_name()
 
 
-post: map
+post = ""
