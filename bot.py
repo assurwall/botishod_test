@@ -167,13 +167,13 @@ def parse_and_send(post, user_chat_id):
                 
         bot.send_document(
             chat_id = user_chat_id, 
-            data = post.document, 
+            data = post.document.file_id, 
             caption = post.caption)
                     
     elif(post.video):
                     
         bot.send_video(chat_id = user_chat_id, 
-            data = post.video, 
+            data = post.video.file_id, 
             caption = post.caption)
                     
     elif(post.photo):
