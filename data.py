@@ -4,8 +4,6 @@ import datetime
 
 import connect
 
-import telebot
-
 
 def get_information():
     
