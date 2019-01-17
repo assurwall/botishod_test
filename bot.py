@@ -15,7 +15,7 @@ import data
 
 bot = telebot.TeleBot(config.token, threaded=False)
 
-post: map
+post = None
 
 def main_menu_keyboard(chat_id, first_name='None', user_name='None'):
 
