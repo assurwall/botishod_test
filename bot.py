@@ -165,8 +165,7 @@ def parse_and_send(post, user_chat_id):
     
     if(post.entities):
         
-        bot.send_message(chat_id = user_chat_id,
-            text = post.entities)
+        print('Есть следующие сущности в тексте: ' + str(post.entities))
     
     if(post.document):
                 
