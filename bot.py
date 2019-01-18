@@ -383,7 +383,7 @@ def inline_handler(inline_query):
                 parse_mode='Markdown')
       
 
-@bot.message_handler(content_types=['photo', 'audio', 'video', 'document', 'text', 'location', 'contact', 'sticker'])
+@bot.message_handler(content_types=['photo', 'audio', 'video', 'document', 'location', 'contact', 'sticker'])
 
 def content_handler(message):
 
