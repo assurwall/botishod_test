@@ -382,30 +382,10 @@ def inline_handler(inline_query):
                 reply_markup=back_contacts_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
                 parse_mode='Markdown')
       
-      
-@bot.message_handler(content_types="photo")
 
-def photo_handler(message):
+@bot.message_handler(content_types=['photo', 'audio', 'video', 'document', 'text', 'location', 'contact', 'sticker'])
 
-    if(data.users_name.get(str(message.chat.id))==['record', str(message.from_user.username)]):
-        
-        data.post = message
-        
-    else:
-        
-        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
-        
-        data.update_db(data.users_name)
-
-        bot.send_message(
-            chat_id=message.chat.id, 
-            text='Выберите интересующий пункт из меню.', 
-            reply_markup=main_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
-            
-        
-@bot.message_handler(content_types="video")
-
-def video_handler(message):
+def content_handler(message):
 
     if(data.users_name.get(str(message.chat.id))==['record', str(message.from_user.username)]):
         
@@ -423,26 +403,6 @@ def video_handler(message):
             reply_markup=main_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
         
     
-@bot.message_handler(content_types="document")
-
-def document_handler(message):
-
-    if(data.users_name.get(str(message.chat.id))==['record', str(message.from_user.username)]):
-        
-        data.post = message
-        
-    else:
-        
-        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
-        
-        data.update_db(data.users_name)
-
-        bot.send_message(
-            chat_id=message.chat.id, 
-            text='Выберите интересующий пункт из меню.', 
-            reply_markup=main_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))   
-        
-
 @bot.message_handler(content_types="text")
 
 def text_handler(message):
