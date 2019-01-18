@@ -163,10 +163,10 @@ def back_legal_menu_keyboard(chat_id, first_name, user_name='None'):
 
 def parse_and_send(post, user_chat_id):
     
-    if(post.text):
+    if(post.entities):
         
         bot.send_message(chat_id = user_chat_id,
-            text = post.text)
+            text = post.entities)
     
     if(post.document):
                 
@@ -186,6 +186,11 @@ def parse_and_send(post, user_chat_id):
         bot.send_photo(chat_id = user_chat_id, 
             photo = post.photo[0].file_id,
             caption = post.caption)
+        
+    elif(post.text):
+        
+        bot.send_message(chat_id = user_chat_id,
+            text = post.text)
 
 
 @bot.callback_query_handler(func=lambda inline_query: True)
