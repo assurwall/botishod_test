@@ -306,7 +306,9 @@ def inline_handler(inline_query):
         
         photos = data.get_photos()
         
-        bot.send_media_group(chat_id=inline_query.message.chat.id, media=photos)
+        bot.send_media_group(
+            chat_id=inline_query.message.chat.id, 
+            media=photos)
         
         for image in photos:
             

@@ -91,11 +91,11 @@ def get_photos():
     
     result = []
     
-    result.append(open('images/Логотип.jpg', 'r'))
+    result.append(open('images/Логотип.jpg', 'rb'))
     
-    result.append(open('images/наркоман.jpg', 'r'))
+    result.append(open('images/наркоман.jpg', 'rb'))
     
-    result.append(open('images/помощь.jpg', 'r'))
+    result.append(open('images/помощь.jpg', 'rb'))
 
     return result
 
