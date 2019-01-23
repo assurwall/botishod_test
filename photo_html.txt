@@ -1,6 +1,4 @@
 ﻿Ниже вы увидите фото центров, где проходит реабилитация, и участников программы:
-<a href="https://yadi.sk/i/3GaPC0PHW5uPDw">&#8203;</a>
-<a href="https://yadi.sk/i/KGiieeY-meTdRA">Фото 2</a>
-<a href="https://yadi.sk/i/F_k799okZYI4hg">Фото 3</a>
-<a href="https://yadi.sk/i/mErooqHA0O--Gw">Фото 4</a>
-<a href="https://yadi.sk/i/0a2ti2bYbN1zMw">Фото 5</a>
+<img src="https://i.ibb.co/Sf40FFh/Penguins.jpg" alt="Penguins" border="0">
+<img src="https://i.ibb.co/vxdnsHX/Koala.jpg" alt="Koala" border="0">
+<img src="https://i.ibb.co/R0SYDgb/Jellyfish.jpg" alt="Jellyfish" border="0">
