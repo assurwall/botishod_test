@@ -1,4 +1,4 @@
 ﻿Ниже вы увидите фото центров, где проходит реабилитация, и участников программы:
-<img src="https://i.ibb.co/Sf40FFh/Penguins.jpg" alt="Penguins" border="0">
-<img src="https://i.ibb.co/vxdnsHX/Koala.jpg" alt="Koala" border="0">
-<img src="https://i.ibb.co/R0SYDgb/Jellyfish.jpg" alt="Jellyfish" border="0">
+<a href="https://i.ibb.co/R0SYDgb/Jellyfish.jpg">&#8203;</a>
+<a href="https://i.ibb.co/vxdnsHX/Koala.jpg">&#8203;</a>
+<a href="https://i.ibb.co/Sf40FFh/Penguins.jpg">&#8203;</a>
