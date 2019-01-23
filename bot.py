@@ -309,7 +309,7 @@ def inline_handler(inline_query):
             message_id=inline_query.message.message_id, 
             text=data.photo_html,
             reply_markup=back_main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
-            parse_mode='HTML')
+            parse_mode='Markdown')
         
     elif(inline_query.data.split(':')[0]=='pr_qr'):
         
