@@ -87,6 +87,19 @@ https://vk.com/id408141585
 ''')
 
 
+def get_photos():
+    
+    result = []
+    
+    result.append(open('images/Логотип.jpg', 'r'))
+    
+    result.append(open('images/наркоман.jpg', 'r'))
+    
+    result.append(open('images/помощь.jpg', 'r'))
+
+    return result
+
+
 def get_links():
     
     result = ''
@@ -119,23 +132,6 @@ def get_hotline():
     return result
 
 hotline = get_hotline()
-
-
-def get_photo_html():
-    
-    result = ''
-    
-    photo_file = open('photo_html.txt', 'r')
-
-    for line in photo_file:
-        
-        result += line
-        
-    photo_file.close()
-    
-    return result
-
-photo_html = get_photo_html()
 
 
 def all_db():

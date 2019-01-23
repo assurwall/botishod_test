@@ -304,12 +304,13 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-        bot.edit_message_text(
-            chat_id=inline_query.message.chat.id, 
-            message_id=inline_query.message.message_id, 
-            text=data.photo_html,
-            reply_markup=back_main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
-            parse_mode='HTML')
+        photos = data.get_photos()
+        
+        bot.send_media_group(chat_id=inline_query.message.chat.id, media=photos)
+        
+        for image in photos:
+            
+            image.close()
         
     elif(inline_query.data.split(':')[0]=='pr_qr'):
         
