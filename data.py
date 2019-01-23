@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from telebot import types
+
 import datetime
 
 import connect
@@ -91,11 +93,11 @@ def get_photos():
     
     result = []
     
-    result.append(open('Логотип.jpg', 'rb'))
+    result.append(types.InputMediaPhoto(open('images/Логотип.jpg', 'rb')))
     
-    result.append(open('наркоман.jpg', 'rb'))
+    result.append(types.InputMediaPhoto(open('images/наркоман.jpg', 'rb')))
     
-    result.append(open('помощь.jpg', 'rb'))
+    result.append(types.InputMediaPhoto(open('images/помощь.jpg', 'rb')))
 
     return result
 

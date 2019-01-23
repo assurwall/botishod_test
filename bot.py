@@ -7,7 +7,6 @@ import telebot
 
 from telebot import types
 
-
 import config
 
 import data
@@ -309,11 +308,7 @@ def inline_handler(inline_query):
         bot.send_media_group(
             chat_id=inline_query.message.chat.id, 
             media=photos)
-        
-        for image in photos:
-            
-            image.close()
-        
+
     elif(inline_query.data.split(':')[0]=='pr_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : ['record', str(inline_query.data.split(':')[3])]})
