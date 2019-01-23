@@ -121,6 +121,23 @@ def get_hotline():
 hotline = get_hotline()
 
 
+def get_photo_html():
+    
+    result = ''
+    
+    photo_file = open('photo.html', 'r')
+
+    for line in photo_file:
+        
+        result += line
+        
+    photo_file.close()
+    
+    return result
+
+photo_html = get_photo_html()
+
+
 def all_db():
 
     con = connect.create_connect()

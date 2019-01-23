@@ -26,6 +26,7 @@ def main_menu_keyboard(chat_id, first_name='None', user_name='None'):
             types.InlineKeyboardButton(text='Контакты', callback_data='cn_qr:'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Полезные ссылки', callback_data='ln_qr:'+chat_id+':'+first_name+':'+user_name),            
             types.InlineKeyboardButton(text='Юридический уголок', callback_data='lg_qr:'+chat_id+':'+first_name+':'+user_name)
+            types.InlineKeyboardButton(text='Фото и видео', callback_data='pv_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
 
     keyboard = types.InlineKeyboardMarkup()
@@ -159,6 +160,7 @@ def back_legal_menu_keyboard(chat_id, first_name, user_name='None'):
     keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='lg_qr:'+chat_id+':'+first_name+':'+user_name))
     
     return keyboard
+
 
 
 def parse_and_send(post, user_chat_id):
@@ -295,6 +297,19 @@ def inline_handler(inline_query):
             text='Здесь будет важная информация',
             reply_markup=back_legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown') 
+        
+    elif(inline_query.data.split(':')[0]='pv_qr')
+    
+        data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
+        
+        data.update_db(data.users_name)
+        
+        bot.edit_message_text(
+            chat_id=inline_query.message.chat.id, 
+            message_id=inline_query.message.message_id, 
+            text=data.photo_html,
+            reply_markup=back_main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
+            parse_mode='HTML')
         
     elif(inline_query.data.split(':')[0]=='pr_qr'):
         
