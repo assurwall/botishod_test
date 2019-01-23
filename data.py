@@ -125,7 +125,7 @@ def get_photo_html():
     
     result = ''
     
-    photo_file = open('photo.html', 'r')
+    photo_file = open('photo_html.txt', 'r')
 
     for line in photo_file:
         
