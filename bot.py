@@ -25,7 +25,7 @@ def main_menu_keyboard(chat_id, first_name='None', user_name='None'):
             types.InlineKeyboardButton(text='О нас', callback_data='in_qr:'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Контакты', callback_data='cn_qr:'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Полезные ссылки', callback_data='ln_qr:'+chat_id+':'+first_name+':'+user_name),            
-            types.InlineKeyboardButton(text='Юридический уголок', callback_data='lg_qr:'+chat_id+':'+first_name+':'+user_name)
+            types.InlineKeyboardButton(text='Юридический уголок', callback_data='lg_qr:'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Фото и видео', callback_data='pv_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
 
@@ -298,7 +298,7 @@ def inline_handler(inline_query):
             reply_markup=back_legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown') 
         
-    elif(inline_query.data.split(':')[0]='pv_qr')
+    elif(inline_query.data.split(':')[0]=='pv_qr'):
     
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
