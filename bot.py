@@ -308,6 +308,8 @@ def inline_handler(inline_query):
         bot.send_media_group(
             chat_id=inline_query.message.chat.id, 
             media=photos)
+        
+#       Осуществить закрытие файлов
 
     elif(inline_query.data.split(':')[0]=='pr_qr'):
         
