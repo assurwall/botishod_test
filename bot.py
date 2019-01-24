@@ -326,16 +326,14 @@ def inline_handler(inline_query):
         
         photos = data.get_photos()
         
-        sended_messages = []
-        
-        for photo in photos.keys():
+        for caption in photos.keys():
             
             bot.send_photo(
                 chat_id=inline_query.message.chat.id,
-                photo=photo,
-                caption=photo.get_value(photo))
+                photo=photos.get_value(caption),
+                caption=caption)
             
-            photo.close()
+            photos.get_value(caption).close()
             
         bot.send_message(
             chat_id=inline_query.message.chat.id,

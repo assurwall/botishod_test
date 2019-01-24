@@ -92,11 +92,11 @@ def get_photos():
     
     result = {}
     
-    result.update({open('images/Логотип.jpg', 'rb'), 'Центр реабилитации "Боровое" в Воронеже'})
+    result.update({'Центр реабилитации "Боровое" в Воронеже', open('images/Логотип.jpg', 'rb')})
     
-    result.update({open('images/наркоман.jpg', 'rb'), 'Центр реабилитации "Боровое" в Воронеже'})
+    result.update({'Участники програмы', open('images/наркоман.jpg', 'rb')})
     
-    result.update({open('images/помощь.jpg', 'rb'), 'Центр реабилитации "Боровое" в Воронеже'})
+    result.update({'Мероприятие', open('images/помощь.jpg', 'rb')})
 
     return result
 
