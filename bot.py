@@ -142,14 +142,6 @@ def back_main_menu_keyboard(chat_id, first_name, user_name='None'):
     
     return keyboard
 
-def back_main_menu_and_clear_keyboard(sended_message, chat_id, first_name, user_name='None'):
-
-    keyboard = types.InlineKeyboardMarkup()
-
-    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='mmc_qr:'+chat_id+':'+first_name+':'+user_name))
-    
-    return keyboard
-
 def back_contacts_menu_keyboard(chat_id, first_name, user_name):
 
     keyboard = types.InlineKeyboardMarkup()
@@ -205,19 +197,6 @@ def parse_and_send(post, user_chat_id):
 def inline_handler(inline_query):
 
     if(inline_query.data.split(':')[0]=='mm_qr'):
-        
-        data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
-        
-        data.update_db(data.users_name)
-
-        bot.edit_message_text(
-            chat_id=inline_query.message.chat.id,
-            message_id=inline_query.message.message_id,
-            text='Выберите интересующий пункт из меню.',
-            reply_markup=main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),       
-            parse_mode='Markdown')
-        
-    if(inline_query.data.split(':')[0]=='mmc_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
@@ -338,7 +317,7 @@ def inline_handler(inline_query):
         bot.send_message(
             chat_id=inline_query.message.chat.id,
             text='Вы сможете посмотреть другие фотографии в [https://vk.com/reabcentr](нашей группе Вконтакте)',
-            reply_markup=back_main_menu_and_clear_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
+            reply_markup=back_main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
 
     elif(inline_query.data.split(':')[0]=='pr_qr'):
