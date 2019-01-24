@@ -90,13 +90,13 @@ contacts.append('''*Артем*:8-928-497-99-82
 
 def get_photos():
     
-    result = []
+    result = {}
     
-    result.append(types.InputMediaPhoto(open('images/Логотип.jpg', 'rb')))
+    result.update({open('images/Логотип.jpg', 'rb'), 'Центр реабилитации "Боровое" в Воронеже'})
     
-    result.append(types.InputMediaPhoto(open('images/наркоман.jpg', 'rb')))
+    result.update({open('images/наркоман.jpg', 'rb'), 'Центр реабилитации "Боровое" в Воронеже'})
     
-    result.append(types.InputMediaPhoto(open('images/помощь.jpg', 'rb')))
+    result.update({open('images/помощь.jpg', 'rb'), 'Центр реабилитации "Боровое" в Воронеже'})
 
     return result
 
