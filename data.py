@@ -26,65 +26,64 @@ information = get_information()
 
 contacts = []
 
-contacts.append('''Т.8-800-500-28-13
+contacts.append('''8-800-500-28-13
 [Вконтакте](https://vk.com/id420868047)
 ''')
 
-contacts.append('''Т. +7 921 255-93-23 Сергей
+contacts.append('''*Сергей*:8-921-255-93-23 
 [Вконтакте](https://vk.com/id320895361)
 ''')
 
-contacts.append('''Т. +7 927 611-91-55  Александр 
+contacts.append('''*Александр*:8-927-611-91-55   
 ''')
 
-contacts.append('''АНО ЦАНЗ Социальный проект «Здоровое Черноземье»
-Т. 8-920-223-66-65 Георгий
+contacts.append('''*Георгий*:8-920-223-66-65
 [Вконтакте](https://vk.com/id410874012)
 ''')
 
-contacts.append('''Т.8-920-527-54-33 Артем
+contacts.append('''*Артем*:8-920-527-54-33 
 [Вконтакте](https://vk.com/id410874012)
 ''')
 
-contacts.append('''Т.8-920-080-93-11 Антон
+contacts.append('''*Антон*:8-920-080-93-11 
 [Вконтакте](https://vk.com/id410874012)
 ''')
 
-contacts.append('''Т.8-920-468-40-25 Владимир
+contacts.append('''*Владимир*:8-920-468-40-25 
 [Вконтакте](https://vk.com/id410874012)
 ''')
 
-contacts.append('''Т.8-927-092-33-69 Рафаэль
+contacts.append('''*Рафаэль*:8-927-092-33-69 
 [Вконтакте](https://vk.com/id410874012)
 ''')
 
-contacts.append('''Т.8-920-222-09-07
+contacts.append('''8-920-222-09-07
 [Вконтакте](https://vk.com/id410874012)
 ''')
 
-contacts.append('''Т. +7 926 612-36-33 Эдуард 
+contacts.append('''*Эдуард*:8-926-612-36-33 
 ''')
 
-contacts.append('''Т. +7 926 612-36-33 Эдуард 
+contacts.append('''*Эдуард*:8-926-612-36-33  
 ''')
 
-contacts.append('''Т.8928-444-14-90
+contacts.append('''8-928-444-14-90
 [Вконтакте](https://vk.com/prozhiznsochi)
 ''')
 
-contacts.append('''+7 928 215-63-54 Иван
+contacts.append('''*Иван*:8-928-215-63-54 
 [Вконтакте](https://vk.com/reba2018)
 ''')
 
-contacts.append('''Т.+7-928-301-06-01 Базров Сослан 
+contacts.append('''*Сослан*:8-928-301-06-01
 [Вконтакте](https://vk.com/id361427938)
 ''')
 
-contacts.append('''Т. +7 928 766-57-57 Максим
+contacts.append('''*Максим*:8-928-766-57-57 
 [Вконтакте](https://vk.com/id395722415)
 ''')
 
-contacts.append('''Т. +7 928 497-99-82 Артем
+contacts.append('''*Артем*:8-928-497-99-82 
 [Вконтакте](https://vk.com/id408141585)
 ''')
 
