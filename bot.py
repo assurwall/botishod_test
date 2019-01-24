@@ -330,10 +330,10 @@ def inline_handler(inline_query):
             
             bot.send_photo(
                 chat_id=inline_query.message.chat.id,
-                photo=photos.get_value(caption),
+                photo=photos.get(caption),
                 caption=caption)
             
-            photos.get_value(caption).close()
+            photos.get(caption).close()
             
         bot.send_message(
             chat_id=inline_query.message.chat.id,
