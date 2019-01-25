@@ -215,7 +215,7 @@ def all_buttons_statistics():
     
     statistics_buttons = cur.fetchall()
     
-    result = [0, 0, 0, 0, 0]
+    result = [0, 0, 0, 0, 0, 0]
     
     for date, hotline, information, contacts, links, legal, photo in statistics_buttons:
             
