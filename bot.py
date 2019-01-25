@@ -224,7 +224,7 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
 
-        data.delete_recorded(inline_query.data.split(':')[2])
+        data.delete_recorded(inline_query.data.split(':')[2], bot)
 
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
