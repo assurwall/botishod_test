@@ -301,7 +301,7 @@ def record_id(sended_messages_id, first_name):
     
     cur = con.cursor()
     
-    cur.execute("CREATE TABLE messages_for_delete_"+first_name+" (message_id integer, chat_id integer")
+    cur.execute("CREATE TABLE messages_for_delete_"+first_name+" (message_id integer, chat_id integer)")
     
     for message_id in sended_messages_id.keys:
         
@@ -322,7 +322,7 @@ def delete_recorded(first_name, bot):
     
     cur = con.cursor()
 
-    cur.execute("SELECT * FROM messages_for_delete_"+str(first_name))
+    cur.execute("SELECT * FROM messages_for_delete_"+str(first_name)+"")
     
     messages_for_delete = cur.fetchall()
     
