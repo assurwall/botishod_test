@@ -331,6 +331,8 @@ def inline_handler(inline_query):
         
         sended_messages_id = {}
         
+        sended_messages_id.update({inline_query.message.message_id : inline_query.message.chat.id})
+        
         for caption in photos.keys():
             
             sended_message = bot.send_photo(
