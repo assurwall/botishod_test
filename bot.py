@@ -331,9 +331,7 @@ def inline_handler(inline_query):
         
         photos = data.get_photos()
         
-        sended_messages_id = {}
-        
-        sended_messages_id.update({inline_query.message.message_id : inline_query.message.chat.id})
+        data.record_id(inline_query.message.message_id, inline_query.message.chat.id, inline_query.data.split(':')[2])
         
         for caption in photos.keys():
             
@@ -342,11 +340,9 @@ def inline_handler(inline_query):
                                 photo=photos.get(caption),
                                 caption=caption)
             
-            sended_messages_id.update({sended_message.message_id : sended_message.chat.id})
+            data.record_id(sended_message.message_id, sended_message.chat.id, inline_query.data.split(':')[2])
             
             photos.get(caption).close()
-            
-        data.record_id(sended_messages_id, inline_query.data.split(':')[2])
             
         bot.send_message(
             chat_id=inline_query.message.chat.id,

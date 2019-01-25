@@ -269,8 +269,6 @@ def today_buttons_statistics():
     else:
         
         result_text = 'Нет нажатий за сегодняшний день. \n'
-        
-    print(6)
     
     con.close()
 
@@ -299,7 +297,7 @@ def update_db(users_name):
 
     cur.close()
 
-def record_id(sended_messages_id, first_name):
+def record_id(message_id, chat_id, first_name):
     
     con = connect.create_connect()
 
@@ -307,15 +305,9 @@ def record_id(sended_messages_id, first_name):
     
     cur = con.cursor()
     
-    cur.execute("DROP TABLE IF EXISTS messages_for_delete_"+first_name)
-    
-    cur.execute("CREATE TABLE messages_for_delete_"+first_name+" (message_id integer, chat_id integer)")
-    
-    for message_id in sended_messages_id.keys():
+    cur.execute("CREATE TABLE IF NOT EXISTS messages_for_delete_"+first_name+" (message_id integer, chat_id integer)")
         
-        chat_id = sended_messages_id.get(message_id)
-        
-        cur.execute("INSERT INTO messages_for_delete_"+first_name+" (message_id, chat_id) VALUES ("+str(message_id)+","+str(chat_id)+")")
+    cur.execute("INSERT INTO messages_for_delete_"+first_name+" (message_id, chat_id) VALUES ("+str(message_id)+","+str(chat_id)+")")
         
     con.close()
 
