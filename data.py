@@ -301,7 +301,7 @@ def record_id(sended_messages_id, first_name):
     
     cur = con.cursor()
     
-    cur.execute("DROP TABLE messages_for_delete_"+first_name)
+    cur.execute("DROP TABLE IF EXISTS messages_for_delete_"+first_name)
     
     cur.execute("CREATE TABLE messages_for_delete_"+first_name+" (message_id integer, chat_id integer)")
     
