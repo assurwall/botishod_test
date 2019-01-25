@@ -264,7 +264,7 @@ def today_buttons_statistics():
         result_text += 'На кнопку "Контакты":'+str(statistics_buttons[3])+'\n'
         result_text += 'На кнопку "Полезные ссылки":'+str(statistics_buttons[4])+'\n'
         result_text += 'На кнопку "Юридический уголок":'+str(statistics_buttons[5])+'\n'
-        result_text += 'На кнопку "Фото":'+str(statistics_buttons[6])+'\n'
+        result_text += 'На кнопку "Фото":'+str(statistics_buttons[5])+'\n'
         
     else:
         
