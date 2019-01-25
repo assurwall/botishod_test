@@ -12,6 +12,7 @@ import config
 import data
 
 from data import post
+from telebot.apihelper import delete_message
 
 
 bot = telebot.TeleBot(config.token, threaded=False)
@@ -142,7 +143,15 @@ def back_main_menu_keyboard(chat_id, first_name, user_name='None'):
     
     return keyboard
 
-def back_contacts_menu_keyboard(chat_id, first_name, user_name):
+def back_main_menu_and_clear_keyboard(chat_id, first_name, user_name='None'):
+
+    keyboard = types.InlineKeyboardMarkup()
+
+    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='mmc_qr:'+chat_id+':'+first_name+':'+user_name))
+    
+    return keyboard
+
+def back_contacts_menu_keyboard(chat_id, first_name, user_name='None'):
 
     keyboard = types.InlineKeyboardMarkup()
 
@@ -201,6 +210,21 @@ def inline_handler(inline_query):
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
         data.update_db(data.users_name)
+
+        bot.edit_message_text(
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text='Выберите интересующий пункт из меню.',
+            reply_markup=main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),       
+            parse_mode='Markdown')
+        
+    if(inline_query.data.split(':')[0]=='mmc_qr'):
+        
+        data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
+        
+        data.update_db(data.users_name)
+
+        data.delete_recorded(inline_query.data.split(':')[2])
 
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -305,19 +329,25 @@ def inline_handler(inline_query):
         
         photos = data.get_photos()
         
+        sended_messages_id = {}
+        
         for caption in photos.keys():
             
-            bot.send_photo(
-                chat_id=inline_query.message.chat.id,
-                photo=photos.get(caption),
-                caption=caption)
+            sended_message = bot.send_photo(
+                                chat_id=inline_query.message.chat.id,
+                                photo=photos.get(caption),
+                                caption=caption)
+            
+            sended_messages_id.update({sended_message.message_id : sended_message.chat_id})
             
             photos.get(caption).close()
+            
+        data.record_id(sended_messages_id, inline_query.data.split(':')[2])
             
         bot.send_message(
             chat_id=inline_query.message.chat.id,
             text='Вы сможете посмотреть другие фотографии в [https://vk.com/reabcentr](нашей группе Вконтакте)',
-            reply_markup=back_main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
+            reply_markup=back_main_menu_and_clear_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
 
     elif(inline_query.data.split(':')[0]=='pr_qr'):

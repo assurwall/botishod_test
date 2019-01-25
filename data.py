@@ -293,6 +293,52 @@ def update_db(users_name):
 
     cur.close()
 
+def record_id(sended_messages_id, first_name):
+    
+    con = connect.create_connect()
+
+    con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+    
+    cur = con.cursor()
+    
+    cur.execute("CREATE TABLE messages_for_delete_"+first_name+" (message_id integer, chat_id integer")
+    
+    for message_id in sended_messages_id.keys:
+        
+        chat_id = sended_messages_id.get(message_id)
+        
+        cur.execute("INSERT INTO messages_for_delete_"+first_name+" (message_id, chat_id) VALUES ("+str(message_id)+","+str(chat_id)+")")
+        
+    con.close()
+
+    cur.close()
+    
+    
+def delete_recorded(first_name, bot):
+    
+    con = connect.create_connect()
+
+    con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+    
+    cur = con.cursor()
+
+    cur.execute("SELECT * FROM messages_for_delete_"+str(first_name))
+    
+    messages_for_delete = cur.fetchall()
+    
+    for message in messages_for_delete:
+        
+        bot.delete_message(
+            chat_id=message[1],
+            message_id=message[0])
+    
+    
+    cur.execute("DROP TABLE messages_for_delete_"+str(first_name))
+    
+    con.close()
+
+    cur.close()
+    
 
 def increment_buttons_db(button_id):
     
