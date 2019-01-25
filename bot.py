@@ -338,7 +338,7 @@ def inline_handler(inline_query):
                                 photo=photos.get(caption),
                                 caption=caption)
             
-            sended_messages_id.update({sended_message.message_id : sended_message.chat_id})
+            sended_messages_id.update({sended_message.message_id : sended_message.chat.id})
             
             photos.get(caption).close()
             
