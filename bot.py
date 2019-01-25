@@ -26,7 +26,7 @@ def main_menu_keyboard(chat_id, first_name='None', user_name='None'):
             types.InlineKeyboardButton(text='Контакты', callback_data='cn_qr:'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Полезные ссылки', callback_data='ln_qr:'+chat_id+':'+first_name+':'+user_name),            
             types.InlineKeyboardButton(text='Юридический уголок', callback_data='lg_qr:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Фото и видео', callback_data='pv_qr:'+chat_id+':'+first_name+':'+user_name)
+            types.InlineKeyboardButton(text='Фото', callback_data='ph_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
 
     keyboard = types.InlineKeyboardMarkup()
@@ -321,19 +321,19 @@ def inline_handler(inline_query):
             reply_markup=back_legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown') 
         
-    elif(inline_query.data.split(':')[0]=='pv_qr'):
+    elif(inline_query.data.split(':')[0]=='ph_qr'):
     
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
         data.update_db(data.users_name)
+        
+        data.increment_buttons_db(6)
         
         photos = data.get_photos()
         
         sended_messages_id = {}
         
         sended_messages_id.update({inline_query.message.message_id : inline_query.message.chat.id})
-        
-        print('1')
         
         for caption in photos.keys():
             
@@ -345,8 +345,6 @@ def inline_handler(inline_query):
             sended_messages_id.update({sended_message.message_id : sended_message.chat.id})
             
             photos.get(caption).close()
-            
-        print('2')    
             
         data.record_id(sended_messages_id, inline_query.data.split(':')[2])
             

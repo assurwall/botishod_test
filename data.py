@@ -217,7 +217,7 @@ def all_buttons_statistics():
     
     result = [0, 0, 0, 0, 0]
     
-    for date, hotline, information, contacts, links, legal in statistics_buttons:
+    for date, hotline, information, contacts, links, legal, photo in statistics_buttons:
             
         result[0] += hotline
         
@@ -228,12 +228,15 @@ def all_buttons_statistics():
         result[3] += links
         
         result[4] += legal
+        
+        result[5] += photo
     
     result_text = 'Нажатий на кнопку "Горячая линия":'+str(result[0])+'\n'
     result_text += 'На кнопку "О нас":'+str(result[1])+'\n'
     result_text += 'На кнопку "Контакты":'+str(result[2])+'\n'
     result_text += 'На кнопку "Полезные ссылки":'+str(result[3])+'\n'
     result_text += 'На кнопку "Юридический уголок":'+str(result[4])+'\n'
+    result_text += 'На кнопку "Фото:"'+str(result[5])+'\n'
     
     con.close()
 
@@ -261,6 +264,7 @@ def today_buttons_statistics():
         result_text += 'На кнопку "Контакты":'+str(statistics_buttons[3])+'\n'
         result_text += 'На кнопку "Полезные ссылки":'+str(statistics_buttons[4])+'\n'
         result_text += 'На кнопку "Юридический уголок":'+str(statistics_buttons[5])+'\n'
+        result_text += 'На кнопку "Фото":'+str(statistics_buttons[6])+'\n'
         
     else:
         
@@ -304,8 +308,6 @@ def record_id(sended_messages_id, first_name):
     cur.execute("DROP TABLE IF EXISTS messages_for_delete_"+first_name)
     
     cur.execute("CREATE TABLE messages_for_delete_"+first_name+" (message_id integer, chat_id integer)")
-    
-    print ('3')
     
     for message_id in sended_messages_id.keys():
         
@@ -360,7 +362,7 @@ def increment_buttons_db(button_id):
     
     if not value:
         
-        array_value = [0, 0, 0, 0, 0, 0]
+        array_value = [0, 0, 0, 0, 0, 0, 0]
         
     else:
         
@@ -368,11 +370,11 @@ def increment_buttons_db(button_id):
         
     array_value[button_id] += 1
     
-    value_str = "'"+str(datetime.date.today())+"',"+str(array_value[1])+","+str(array_value[2])+","+str(array_value[3])+","+str(array_value[4])+","+str(array_value[5])
+    value_str = "'"+str(datetime.date.today())+"',"+str(array_value[1])+","+str(array_value[2])+","+str(array_value[3])+","+str(array_value[4])+","+str(array_value[5])+","+str(array_value[6])
     
-    set_value_str="hl="+str(array_value[1])+", inf="+str(array_value[2])+", cn="+str(array_value[3])+", ln="+str(array_value[4])+",lg="+str(array_value[5])
+    set_value_str="hl="+str(array_value[1])+", inf="+str(array_value[2])+", cn="+str(array_value[3])+", ln="+str(array_value[4])+",lg="+str(array_value[5])+",ph="+str(array_value[6])
 
-    cur.execute("INSERT INTO statistics_buttons (date, hl, inf, cn, ln, lg) VALUES ("+value_str+") ON CONFLICT (date) DO UPDATE SET "+set_value_str)
+    cur.execute("INSERT INTO statistics_buttons (date, hl, inf, cn, ln, lg, ph) VALUES ("+value_str+") ON CONFLICT (date) DO UPDATE SET "+set_value_str)
     
     con.close()
 
