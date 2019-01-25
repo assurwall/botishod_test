@@ -253,22 +253,33 @@ def today_buttons_statistics():
 
     cur = con.cursor()
     
+    print(1)
+    
     cur.execute("SELECT * FROM statistics_buttons WHERE date='"+str(datetime.date.today())+"'")
     
+    print(2)
+    
     if(cur.fetchall()):
+        
+        print(3)
     
         statistics_buttons = list(cur.fetchall()[0])
         
         result_text = 'Нажатий на кнопку "Горячая линия":'+str(statistics_buttons[1])+'\n'
         result_text += 'На кнопку "О нас":'+str(statistics_buttons[2])+'\n'
         result_text += 'На кнопку "Контакты":'+str(statistics_buttons[3])+'\n'
+        
+        print(4)
+        
         result_text += 'На кнопку "Полезные ссылки":'+str(statistics_buttons[4])+'\n'
         result_text += 'На кнопку "Юридический уголок":'+str(statistics_buttons[5])+'\n'
-        result_text += 'На кнопку "Фото":'+str(statistics_buttons[5])+'\n'
+        result_text += 'На кнопку "Фото":'+str(statistics_buttons[6])+'\n'
         
     else:
         
         result_text = 'Нет нажатий за сегодняшний день. \n'
+        
+    print(5)
     
     con.close()
 
