@@ -543,7 +543,8 @@ def text_handler(message):
         
         bot.send_document(
             chat_id=message.chat.id, 
-            data=db_file)
+            data=db_file,
+            reply_markup=goto_main_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
         
         db_file.close()
         
