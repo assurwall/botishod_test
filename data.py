@@ -94,7 +94,7 @@ def get_photos():
     
     result.update({'Центр реабилитации "Гремячье" в Воронеже': open('images/Гремячье.jpg', 'rb')})
     
-    result.update({'Кухня в центре реабилитации "Боровое"': open('images/Боровое-кухню.jpg', 'rb')})
+    result.update({'Кухня в центре реабилитации "Боровое"': open('images/Боровое-кухня.jpg', 'rb')})
     
     result.update({'Участники программы': open('images/Участники.jpg', 'rb')})
 
