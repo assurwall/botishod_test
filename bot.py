@@ -107,7 +107,7 @@ def post_menu_keyboard(chat_id, first_name, user_name='None'):
     
     buttons = [
             types.InlineKeyboardButton(text='Начать отправку', callback_data='pr_qr:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Главное меню', callback_data='mm_qr:'+chat_id+':'+first_name+':'+user_name)
+            types.InlineKeyboardButton(text='Главное меню', callback_data='mmcs_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
     
     keyboard = types.InlineKeyboardMarkup()
@@ -234,7 +234,7 @@ def inline_handler(inline_query):
             reply_markup=main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),       
             parse_mode='Markdown')
         
-    if(inline_query.data.split(':')[0]=='mmc_qr'):
+    elif(inline_query.data.split(':')[0]=='mmc_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
@@ -248,6 +248,21 @@ def inline_handler(inline_query):
             text='Выберите интересующий пункт из меню.',
             reply_markup=main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),       
             parse_mode='Markdown')
+        
+    elif(inline_query.data.split(':')[0]=='mmcs_qr'):
+        
+        data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
+        
+        data.update_db(data.users_name)
+
+        data.delete_recorded(inline_query.data.split(':')[2], bot)
+
+        bot.send_message_text(
+            chat_id=inline_query.message.chat.id,
+            text='Выберите интересующий пункт из меню.',
+            reply_markup=main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),       
+            parse_mode='Markdown')    
+    
     
     elif(inline_query.data.split(':')[0]=='hl_qr'):
         
@@ -486,10 +501,12 @@ def text_handler(message):
         
         data.update_db(data.users_name)
         
-        bot.send_message(
-            chat_id=message.chat.id, 
-            text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
-            reply_markup=post_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
+        sended_message = bot.send_message(
+                            chat_id=message.chat.id, 
+                            text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
+                            reply_markup=post_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
+        
+        data.record_id(sended_message.message_id, sended_message.chat.id, message.from_user.first_name)
         
     elif(message.text=='база_список3.16'):
         
