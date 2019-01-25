@@ -259,7 +259,7 @@ def today_buttons_statistics():
         
         print(1)
     
-        statistics_buttons = list(cur.fetchall()[0])
+        statistics_buttons = list(cur.fetchall())
         
         print(2)
         
