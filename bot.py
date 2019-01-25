@@ -151,6 +151,14 @@ def back_main_menu_and_clear_keyboard(chat_id, first_name, user_name='None'):
     
     return keyboard
 
+def main_menu_and_clear_keyboard(chat_id, first_name, user_name='None'):
+
+    keyboard = types.InlineKeyboardMarkup()
+
+    keyboard.add(types.InlineKeyboardButton(text='Главное меню', callback_data='mmc_qr:'+chat_id+':'+first_name+':'+user_name))
+    
+    return keyboard
+
 def back_contacts_menu_keyboard(chat_id, first_name, user_name='None'):
 
     keyboard = types.InlineKeyboardMarkup()
@@ -494,12 +502,11 @@ def text_handler(message):
             
             cut_index += step
             
-        sended_message = bot.send_message(
-                            chat_id=message.chat.id, 
-                            text="Конец базы данных.",
-                            reply_markup=back_main_menu_and_clear_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text="Конец базы данных.",
+            reply_markup=main_menu_and_clear_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
          
-        data.record_id(sended_message.message_id, sended_message.chat.id, message.from_user.first_name)
          
     elif(message.text=='база_файл3.16'):
         
@@ -521,12 +528,10 @@ def text_handler(message):
         
         data.update_db(data.users_name)
         
-        sended_message = bot.send_message(
-                            chat_id=message.chat.id, 
-                            text=data.all_buttons_statistics(),
-                            reply_markup=back_main_menu_and_clear_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
-        
-        data.record_id(sended_message.message_id, sended_message.chat.id, message.from_user.first_name)
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text=data.all_buttons_statistics(),
+            reply_markup=main_menu_and_clear_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
         
     elif(message.text=='статистика_сегодня3.16'):
         
@@ -534,12 +539,10 @@ def text_handler(message):
         
         data.update_db(data.users_name)
         
-        sended_message = bot.send_message(
-                            chat_id=message.chat.id, 
-                            text=data.today_buttons_statistics(),
-                            reply_markup=back_main_menu_and_clear_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
-        
-        data.record_id(sended_message.message_id, sended_message.chat.id, message.from_user.first_name)
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text=data.today_buttons_statistics(),
+            reply_markup=main_menu_and_clear_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
         
     else:
         
