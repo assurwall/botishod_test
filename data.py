@@ -259,20 +259,9 @@ def today_buttons_statistics():
     
     if(statistics_buttons):
         
-        print("1, str(statistics_buttons)="+str(statistics_buttons))
-        
         result_text = 'Нажатий на кнопку "Горячая линия":'+str(statistics_buttons[1])+'\n'
-        
-        print(2)
-        
         result_text += 'На кнопку "О нас":'+str(statistics_buttons[2])+'\n'
-        
-        print(3)
-        
         result_text += 'На кнопку "Контакты":'+str(statistics_buttons[3])+'\n'
-        
-        print(4)
-        
         result_text += 'На кнопку "Полезные ссылки":'+str(statistics_buttons[4])+'\n'
         result_text += 'На кнопку "Юридический уголок":'+str(statistics_buttons[5])+'\n'
         result_text += 'На кнопку "Фото":'+str(statistics_buttons[6])+'\n'
