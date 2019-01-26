@@ -337,7 +337,7 @@ def inline_handler(inline_query):
             message_id=inline_query.message.message_id,
             text='Юридический уголок',
             reply_markup=legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
-            parse_mode='Markdown') 
+            parse_mode='Markdown')
         
     elif(inline_query.data.split(':')[0]=='lgi_qr'):
         
@@ -345,12 +345,33 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-        bot.edit_message_text(
+        sended_message = bot.edit_message_text(
+                            chat_id=inline_query.message.chat.id,
+                            message_id=inline_query.message.message_id,
+                            text=data.legal,
+                            reply_markup=back_legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
+                            parse_mode='Markdown')
+        
+        data.record_id(sended_message.message_id, sended_message.chat.id, inline_query.data.split(':')[2])
+        
+        photos = data.get_photos(2)
+        
+        for caption in photos.keys():
+            
+            sended_message = bot.send_photo(
+                                chat_id=inline_query.message.chat.id,
+                                photo=photos.get(caption),
+                                caption=caption)
+            
+            data.record_id(sended_message.message_id, sended_message.chat.id, inline_query.data.split(':')[2])
+            
+            photos.get(caption).close()
+            
+        bot.send_message(
             chat_id=inline_query.message.chat.id,
-            message_id=inline_query.message.message_id,
-            text=data.legal,
-            reply_markup=back_legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
-            parse_mode='Markdown') 
+            text='Вы также можете ознакомится с [http://www.reabcentr.ru/images/stories/Chernozemie_/Ustav.docx](уставом) нашей организации.',
+            reply_markup=,
+            parse_mode='Markdown')
         
     elif(inline_query.data.split(':')[0]=='ph_qr'):
     
@@ -360,7 +381,7 @@ def inline_handler(inline_query):
         
         data.increment_buttons_db(6)
         
-        photos = data.get_photos()
+        photos = data.get_photos(1)
         
         data.record_id(inline_query.message.message_id, inline_query.message.chat.id, inline_query.data.split(':')[2])
         
