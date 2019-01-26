@@ -135,6 +135,23 @@ def get_hotline():
 hotline = get_hotline()
 
 
+def get_legal():
+    
+    result = ''
+    
+    hotline_file = open('legal.txt', 'r')
+    
+    for line in hotline_file:
+        
+        result += line
+        
+    hotline_file.close()
+
+    return result
+
+legal = get_legal()
+
+
 def all_db():
 
     con = connect.create_connect()
@@ -296,6 +313,7 @@ def update_db(users_name):
     con.close()
 
     cur.close()
+
 
 def record_id(message_id, chat_id, first_name):
     

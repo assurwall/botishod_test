@@ -348,7 +348,7 @@ def inline_handler(inline_query):
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
-            text='Здесь будет важная информация',
+            text=data.legal,
             reply_markup=back_legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown') 
         
