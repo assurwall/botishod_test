@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from telebot import types
+#from telebot import types
 
 import datetime
 
@@ -88,15 +88,24 @@ contacts.append('''*Артем*:8-928-497-99-82
 ''')
 
 
-def get_photos():
+def get_photos(number):
     
     result = {}
     
-    result.update({'Центр реабилитации "Гремячье" в Воронеже': open('images/Гремячье.jpg', 'rb')})
+    if(number == 1):
     
-    result.update({'Кухня в центре реабилитации "Боровое"': open('images/Боровое-кухня.jpg', 'rb')})
+        result.update({'Центр реабилитации "Гремячье" в Воронеже': open('images/Гремячье.jpg', 'rb')})
     
-    result.update({'Участники программы': open('images/Участники.jpg', 'rb')})
+        result.update({'Кухня в центре реабилитации "Боровое"': open('images/Боровое-кухня.jpg', 'rb')})
+    
+        result.update({'Участники программы': open('images/Участники.jpg', 'rb')})
+        
+    elif(number == 2):
+    
+        result.update({'Свидетельство о государственной некомерческой организации"': open('images/Свидетельство 1.jpg', 'rb')})
+        
+        result.update({'Свидетельство о постановке на учёт в налогом органе': open('images/Свидетельство 2.jpg', 'rb')})
+    
 
     return result
 

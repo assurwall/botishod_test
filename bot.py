@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 
-import time
+#import time
 
 import telebot
 
-
 from telebot import types
+
 
 import config
 
 import data
 
-from data import post
+#from data import post
 
-from telebot.apihelper import delete_message
+#from telebot.apihelper import delete_message
 
 
 bot = telebot.TeleBot(config.token, threaded=False)
@@ -135,7 +135,6 @@ def post_record_menu_keyboard(chat_id, first_name, user_name='None'):
         
     return keyboard
 
-
 def back_main_menu_keyboard(chat_id, first_name, user_name='None'):
 
     keyboard = types.InlineKeyboardMarkup()
@@ -177,11 +176,11 @@ def back_contacts_menu_keyboard(chat_id, first_name, user_name='None'):
     return keyboard
 
         
-def back_legal_menu_keyboard(chat_id, first_name, user_name='None'):
+def back_legal_menu_and_clear_keyboard(chat_id, first_name, user_name='None'):
 
     keyboard = types.InlineKeyboardMarkup()
 
-    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='lg_qr:'+chat_id+':'+first_name+':'+user_name))
+    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='lgc_qr:'+chat_id+':'+first_name+':'+user_name))
     
     return keyboard
 
@@ -339,6 +338,22 @@ def inline_handler(inline_query):
             reply_markup=legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
         
+        
+    elif(inline_query.data.split(':')[0]=='lgc_qr'):
+        
+        data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
+        
+        data.update_db(data.users_name)
+        
+        data.delete_recorded(inline_query.data.split(':')[2], bot)
+        
+        bot.edit_message_text(
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text='Юридический уголок',
+            reply_markup=legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
+            parse_mode='Markdown')
+        
     elif(inline_query.data.split(':')[0]=='lgi_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
@@ -349,7 +364,6 @@ def inline_handler(inline_query):
                             chat_id=inline_query.message.chat.id,
                             message_id=inline_query.message.message_id,
                             text=data.legal,
-                            reply_markup=back_legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
                             parse_mode='Markdown')
         
         data.record_id(sended_message.message_id, sended_message.chat.id, inline_query.data.split(':')[2])
@@ -370,7 +384,7 @@ def inline_handler(inline_query):
         bot.send_message(
             chat_id=inline_query.message.chat.id,
             text='Вы также можете ознакомится с [http://www.reabcentr.ru/images/stories/Chernozemie_/Ustav.docx](уставом) нашей организации.',
-            reply_markup=,
+            reply_markup=back_legal_menu_and_clear_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
         
     elif(inline_query.data.split(':')[0]=='ph_qr'):
