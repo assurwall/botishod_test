@@ -383,7 +383,7 @@ def inline_handler(inline_query):
             
         bot.send_message(
             chat_id=inline_query.message.chat.id,
-            text='Вы также можете ознакомится с [уставом](http://www.reabcentr.ru/images/stories/Chernozemie_/Ustav.docx) нашей организации.',
+            text='Вы также можете ознакомиться с [уставом](http://www.reabcentr.ru/images/stories/Chernozemie_/Ustav.docx) нашей организации.',
             reply_markup=back_legal_menu_and_clear_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
         
