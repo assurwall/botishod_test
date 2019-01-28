@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-#import time
-
 import telebot
 
 from telebot import types
@@ -10,10 +8,6 @@ from telebot import types
 import config
 
 import data
-
-#from data import post
-
-#from telebot.apihelper import delete_message
 
 
 bot = telebot.TeleBot(config.token, threaded=False)
