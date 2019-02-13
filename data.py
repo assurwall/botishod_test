@@ -4,6 +4,8 @@ import datetime
 
 import connect
 
+import os
+
 
 def get_information():
     
@@ -92,12 +94,10 @@ def get_photos(number):
     
     if(number == 1):
     
-        result.update({'Центр реабилитации "Гремячье" в Воронеже': open('images/Гремячье.jpg', 'rb')})
-    
-        result.update({'Кухня в центре реабилитации "Боровое"': open('images/Боровое-кухня.jpg', 'rb')})
-    
-        result.update({'Участники программы': open('images/Участники.jpg', 'rb')})
-        
+        for filename in os.listdir(os.getcwd()+'/images/menu_photos'):
+            
+            result.update({str(filename) : open(str(filename), 'rb')})
+            
     elif(number == 2):
     
         result.update({'Свидетельство о государственной некомерческой организации"': open('images/Свидетельство 1.jpg', 'rb')})
