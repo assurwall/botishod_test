@@ -96,7 +96,7 @@ def get_photos(number):
     
         for filename in os.listdir(os.getcwd()+'/images/menu_photos'):
             
-            result.update({str(filename) : open('images/menu_photos/' + str(filename), 'rb')})
+            result.update({str(filename).split('.')[0] : open('images/menu_photos/' + str(filename), 'rb')})
             
     elif(number == 2):
     
