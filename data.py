@@ -351,15 +351,19 @@ def delete_recorded(first_name, bot):
     
     messages_for_delete = cur.fetchall()
     
-    for message in messages_for_delete:
+    try:
         
-        print('Удаление сообщения с chat_id:'+str(message[1])+' и message_id:'+str(message[0]))
+        for message in messages_for_delete:
         
-        bot.delete_message(
-            chat_id=message[1],
-            message_id=message[0])
+            bot.delete_message(
+                chat_id=message[1],
+                message_id=message[0])
     
-    
+    except Exception as e:
+
+        cur.execute("DROP TABLE messages_for_delete_"+str(first_name))
+        
+        
     cur.execute("DROP TABLE messages_for_delete_"+str(first_name))
     
     con.close()
