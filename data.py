@@ -353,6 +353,8 @@ def delete_recorded(first_name, bot):
     
     for message in messages_for_delete:
         
+        print('Удаление сообщения с chat_id:'+message[1]+' и message_id:'+message[0])
+        
         bot.delete_message(
             chat_id=message[1],
             message_id=message[0])
